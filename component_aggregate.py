@@ -34,7 +34,7 @@ def get_dominant_emo(df):
 
 def aggregate(file_name):
     # CSVファイルの読み込み
-    df = pd.read_csv('csv/' + file_name + '.csv')
+    df = pd.read_csv('./eisapp/event_Improvement_survice/detect_face_emotion/csv/' + file_name + '.csv')
 
     # ファイル名の文字列の取得
     df['file_name_prefix'] = df['file_name'].apply(lambda x: os.path.splitext(x)[0])

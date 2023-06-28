@@ -13,8 +13,10 @@ def detect_people(name):
     # モデルの生成
     model = YOLO("yolov8s.pt")
 
-    # 入力データ
-    img_files = glob.glob("./data/" + name + "/*.jpg")
+    # 参照画像
+    img_files = glob.glob("./eisapp/event_Improvement_survice/detect_face_emotion/data/" + name + "/*.jpg")
+    # 保存先
+    files = "./eisapp/event_Improvement_survice/detect_face_emotion/runs/detect/"
 
     # 推論実行
     # save=True: 画像保存
@@ -22,9 +24,16 @@ def detect_people(name):
     # save_conf: 各物体のconfidence（スコア）
     # save_crop = True: 検出した物体を切り出し
     # results = model("data/camera_capture_cycle_2023-04-20,15-19-17.jpg")
-    results = model.predict(img_files, save_txt = True, save_conf = True, save = True, conf = 0.8, classes = [0], save_crop = True)
+    results = model.predict(source=img_files, #参照画像
+                            project=files, #保存先
+                            name="predict", #保存するフォルダ名
+                            save_txt = True,
+                            save_conf = True,
+                            save = True, conf = 0.8,
+                            classes = [0],
+                            save_crop = True)
 
-    labels = glob.glob("./runs/detect/predict/labels/*.txt")
+    #labels = glob.glob("./runs/detect/predict/labels/*.txt")
 
     """
     df = pd.DataFrame()

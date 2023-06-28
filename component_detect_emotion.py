@@ -6,12 +6,12 @@ import csv
 import os
 
 def detect_emo(name):
-    image_file = glob.glob('./runs/detect/predict/crops/person/*.jpg')
+    image_file = glob.glob('./eisapp/event_Improvement_survice/detect_face_emotion/runs/detect/predict/crops/person/*.jpg')
 
-    os.makedirs("csv", exist_ok=True)
+    os.makedirs("./eisapp/event_Improvement_survice/detect_face_emotion/csv", exist_ok=True)
 
     # CSVファイル作成
-    with open('csv/' + name + '.csv', 'w', newline='', encoding = 'utf-8') as file:
+    with open('./eisapp/event_Improvement_survice/detect_face_emotion/csv/' + name + '.csv', 'w', newline='', encoding = 'utf-8') as file:
         writer = csv.writer(file)
         # writer.writerow(['file_name', 'FER_dominant_emo', 'FER_dominant_score', 'DF_dominant_emo', 'DF_dominant_score'])
         writer.writerow(['file_name', 'FER_dominant_emo', 'FER_dominant_score', 

@@ -21,7 +21,7 @@ def get_emotion_mean(df):
 
 def emo_mean(file_name):
     # CSVファイルの読み込み
-    df = pd.read_csv('csv/' + file_name + '.csv')
+    df = pd.read_csv('./eisapp/event_Improvement_survice/detect_face_emotion/csv/' + file_name + '.csv')
 
     # ファイル名の文字列の取得
     df['file_name_prefix'] = df['file_name'].apply(lambda x: os.path.splitext(x)[0])
@@ -65,7 +65,7 @@ def emo_mean(file_name):
     plt.legend()
     plt.tight_layout()
 
-    plt.savefig('images/emotion_chart_' + file_name + '.jpg', dpi = 300)
+    plt.savefig('./eisapp/event_Improvement_survice/detect_face_emotion/images/emotion_chart_' + file_name + '.jpg', dpi = 300)
     plt.show()
 
 

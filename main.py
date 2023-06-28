@@ -1,28 +1,38 @@
-from component_make_picture import *
-from component_detect_people import *
-from component_detect_emotion import * 
-from component_aggregate import *
-from component_emo_mean import *
+from .component_make_picture import *
+from .component_detect_people import *
+from .component_detect_emotion import * 
+from .component_aggregate import *
+from .component_emo_mean import *
 import shutil
 
-try:
-    #predict・フォルダの削除
-    shutil.rmtree('runs/detect/predict')
-except:
-    None
 
-# カメラ起動・データ作成
-name = input("イベント名を入力してください:")
-save_frame_camera_cycle(0, 'data/' + name, 'camera_capture_cycle', 30)
+class Main:
+    def __init__(self, input_data):
+        # self.name = input("イベント名を入力してください:")
+        self.name = input_data
 
-# YOLOによる物体検知
-detect_people(name)
+        try:
+            #predict・フォルダの削除
+            shutil.rmtree('./eisapp/event_Improvement_survice/detect_face_emotion/runs/detect/predict')
+        except:
+            None
 
-# FERによる表情分析
-detect_emo(name)
+    def act(self):
+        # カメラ起動・データ作成
+        save_frame_camera_cycle(0, './eisapp/event_Improvement_survice/detect_face_emotion/data/' + self.name, 'camera_capture_cycle', 30)
 
-# 感情分析結果集計
-aggregate(name)
+        # YOLOによる物体検知
+        detect_people(self.name)
 
-# 感情推移平均
-emo_mean(name)
+        # FERによる表情分析
+        detect_emo(self.name)
+
+        # 感情分析結果集計
+        aggregate(self.name)
+
+        # 感情推移平均
+        emo_mean(self.name)
+
+if __name__ == '__main__':
+    main = Main()
+    main.act()
