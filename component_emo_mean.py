@@ -55,7 +55,7 @@ def emo_mean(file_name):
 
     
     max_label_length = 20 
-    short_labels = [label[56:76] if len(label) > max_label_length else label for label in name_list]
+    short_labels = [label[110:130] if len(label) > max_label_length else label for label in name_list]
     
 
     plt.xlabel('Name')

@@ -60,4 +60,4 @@ def save_frame_camera_cycle(device_num, dir_path, basename, cycle, ext='jpg', de
 # cycle = 300 : 10s
 if __name__ == '__main__':
     name = input("イベント名を入力してください:")
-    save_frame_camera_cycle(0, 'data/' + name, 'camera_capture_cycle', 30)
+    save_frame_camera_cycle(0, 'data/' + name, 'camera_capture_cycle', 150)
