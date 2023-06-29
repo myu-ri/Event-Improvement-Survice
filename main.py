@@ -19,7 +19,7 @@ class Main:
 
     def act(self):
         # カメラ起動・データ作成
-        save_frame_camera_cycle(0, './eisapp/event_Improvement_survice/detect_face_emotion/data/' + self.name, 'camera_capture_cycle', 30)
+        save_frame_camera_cycle(0, './eisapp/event_Improvement_survice/detect_face_emotion/data/' + self.name, 'camera_capture_cycle', 90)
 
         # YOLOによる物体検知
         detect_people(self.name)
