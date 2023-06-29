@@ -65,7 +65,12 @@ def emo_mean(file_name):
     plt.legend()
     plt.tight_layout()
 
+    # Serch用画像出力
     plt.savefig('./eisapp/event_Improvement_survice/detect_face_emotion/images/emotion_chart_' + file_name + '.jpg', dpi = 300)
+
+    # フロント表示用画像出力
+    plt.savefig('./eisapp/static/assets/img/emotion_chart_' + file_name + '.jpg', dpi = 300)
+    
     # plt.show()
 
 
