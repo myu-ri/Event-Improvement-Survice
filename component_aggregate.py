@@ -40,7 +40,7 @@ def aggregate(file_name):
     df['file_name_prefix'] = df['file_name'].apply(lambda x: os.path.splitext(x)[0])
 
     # ファイル名の一致を検出するために長さを指定
-    length = 75
+    length = 128
 
     # 文字列の一致を検出
     matched = df.groupby(df['file_name_prefix'].apply(lambda x: x[:length]))

@@ -27,7 +27,7 @@ def emo_mean(file_name):
     df['file_name_prefix'] = df['file_name'].apply(lambda x: os.path.splitext(x)[0])
 
     # ファイル名の一致を検出するために長さを指定
-    length = 75
+    length = 128
 
     # 文字列の一致を検出
     matched = df.groupby(df['file_name_prefix'].apply(lambda x: x[:length]))
@@ -55,7 +55,7 @@ def emo_mean(file_name):
 
     
     max_label_length = 20 
-    short_labels = [label[110:130] if len(label) > max_label_length else label for label in name_list]
+    short_labels = [label[114:129] if len(label) > max_label_length else label for label in name_list]
     
 
     plt.xlabel('Name')
@@ -66,7 +66,7 @@ def emo_mean(file_name):
     plt.tight_layout()
 
     plt.savefig('./eisapp/event_Improvement_survice/detect_face_emotion/images/emotion_chart_' + file_name + '.jpg', dpi = 300)
-    plt.show()
+    # plt.show()
 
 
 
