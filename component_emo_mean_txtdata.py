@@ -8,7 +8,7 @@ import warnings
 warnings.simplefilter('ignore')
 plt.style.use('ggplot')
 
-def get_emotion_mean(df):
+def get_emotion_mean_txtdata(df):
     # 各感情ごとの平均値を算出
     emotion_list = df[['FER[angry]', 'FER[disgust]', 'FER[fear]',
                        'FER[happy]', 'FER[sad]', 'FER[surprise]', 'FER[neutral]']]
@@ -19,7 +19,7 @@ def get_emotion_mean(df):
 
     return sum_emotion
 
-def emo_mean(file_name):
+def emo_mean_txtdata(file_name):
     # CSVファイルの読み込み
     df = pd.read_csv('./eisapp/event_Improvement_survice/detect_face_emotion/csv/' + file_name + '.csv')
 
@@ -41,7 +41,7 @@ def emo_mean(file_name):
     for name, group in matched:
 
         print(name)
-        emotion_means = get_emotion_mean(group)
+        emotion_means = get_emotion_mean_txtdata(group)
         print(emotion_means)
 
         emotion_means_list.append(emotion_means)
@@ -54,31 +54,11 @@ def emo_mean(file_name):
     num_emotions = len(emotion_means_list[0])  # 感情の数（7種類）を取得
     emotion_labels = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']  # 感情のラベル
 
-    # 各感情ごとに折れ線をプロット
-    for i in range(num_emotions):
-        values = [emotion_means[i] for emotion_means in emotion_means_list]
-        plt.plot(name_list, values, marker='o', label=emotion_labels[i])
+    # emotion_means_listを辞書のリストに変換する
+    emotion_means_dict_list = []
+    for emotion_means in emotion_means_list:
+        emotion_means_dict = emotion_means.to_dict()
+        emotion_means_dict_list.append(emotion_means_dict)
 
-    
-    max_label_length = 20 
-    short_labels = [label[114:129] if len(label) > max_label_length else label for label in name_list]
-    
+    return emotion_means_dict_list, name_list
 
-    plt.xlabel('Name')
-    plt.ylabel('Emotion Mean')
-    plt.title('Average Emotion for Each File')
-    plt.xticks(range(len(name_list)), short_labels, rotation=90)
-    plt.legend()
-    plt.tight_layout()
-
-    # Serch用画像出力
-    plt.savefig('./eisapp/event_Improvement_survice/detect_face_emotion/images/emotion_chart_' + file_name + '.jpg', dpi = 300)
-
-    # フロント表示用画像出力
-    plt.savefig('./eisapp/static/assets/img/emotion_chart_' + file_name + '.jpg', dpi = 300)
-    
-    # plt.show()
-
-if __name__ == '__main__':
-    name = input("イベント名を入力してください:")
-    emo_mean(name)
