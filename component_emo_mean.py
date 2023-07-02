@@ -73,6 +73,8 @@ def emo_mean(file_name):
     
     # plt.show()
 
+    return emotion_means_list, name_list
+
 
 
 if __name__ == '__main__':
