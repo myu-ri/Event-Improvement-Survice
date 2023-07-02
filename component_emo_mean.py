@@ -34,6 +34,8 @@ def emo_mean(file_name):
 
     emotion_means_list = []
     name_list = []
+    # emotion_means_listを辞書のリストに変換する（Django出力用）
+    emotion_means_dict_list = []
 
     # ファイル名ごとに感情の平均値を計算
     for name, group in matched:
@@ -44,6 +46,10 @@ def emo_mean(file_name):
 
         emotion_means_list.append(emotion_means)
         name_list.append(name)
+    
+    for emotion_means in emotion_means_list:
+        emotion_means_dict = emotion_means.to_dict()
+        emotion_means_dict_list.append(emotion_means_dict)
     
     num_emotions = len(emotion_means_list[0])  # 感情の数（7種類）を取得
     emotion_labels = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']  # 感情のラベル
@@ -73,7 +79,7 @@ def emo_mean(file_name):
     
     # plt.show()
 
-    return emotion_means_list, name_list
+    return emotion_means_dict_list, name_list
 
 
 
