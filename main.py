@@ -6,7 +6,7 @@ from .component_emo_mean import *
 import shutil
 
 
-class Main:
+class Main_Detect:
     def __init__(self, input_data):
         # self.name = input("イベント名を入力してください:")
         self.name = input_data
@@ -34,5 +34,5 @@ class Main:
         emo_mean(self.name)
 
 if __name__ == '__main__':
-    main = Main()
+    main = Main_Detect()
     main.act()
